@@ -1,0 +1,15 @@
+.container {
+  width: 50%;
+}
+
+.form-temp {
+  padding: 0.5em;
+  margin: auto;
+}
+
+.form-group{
+    margin: .4em 0;
+    width: 100%;
+    padding: .6em 1em;
+    border: 1px solid var(--border);
+}

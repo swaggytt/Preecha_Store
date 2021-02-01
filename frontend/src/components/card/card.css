@@ -1,0 +1,25 @@
+.card {
+  padding: 1rem 1rem;
+  width: 50%;
+  border-radius: 8px;
+  background-color: #4caf50;
+  height: fit-content;
+  transition: all ease-in-out 150ms;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.card-input {
+  width: 90%;
+  font-size: 22px;
+  font-weight: bold;
+  color: #000000;
+  background-color: #f7faff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 0 2px transparent;
+  transition: all ease-in-out 200ms;
+}

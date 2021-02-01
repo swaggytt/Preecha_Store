@@ -21,6 +21,10 @@
   margin-top: 60px;
 }
 
+body{
+  background-color: #F7FAFF;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -1,8 +1,9 @@
+import Card from "../components/card"
 
 const addProductPage = () =>{
     return(
         <div>
-            addProductPage
+            <Card/>
         </div>
     )
 }

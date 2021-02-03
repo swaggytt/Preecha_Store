@@ -6,7 +6,6 @@ const ProductSchema = mongoose.Schema(
     category: String,
     wholesalePricePerBox: Number,
     wholesalePricePerPack: Number,
-    wholesalePricePerOne: Number,
     RetailPrice: Number
   },
   { timestamps: true }

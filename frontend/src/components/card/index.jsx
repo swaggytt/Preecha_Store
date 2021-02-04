@@ -1,20 +1,26 @@
 import "./card.scss";
 import { useState } from "react";
 
-const Card = () => {
+const Card = ({onSubmit}) => {
   const [name, setName] = useState("");
-  const [priceperbox, setPriceBox] = useState();
-  const [priceperpack, setPricePack] = useState();
-  const [retailprice, setPrice] = useState();
+  const [category, setCategory] = useState("");
+  const [priceperbox, setPriceBox] = useState("");
+  const [priceperpack, setPricePack] = useState("");
+  const [retailprice, setPrice] = useState("");
 
   return (
     <div className="card">
-      <form className="form-temp">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit(name, category, priceperbox, priceperpack, retailprice);
+        }}
+        className="form-temp"
+      >
         <div className="form-group">
-          <label for="name" className="text-light">
+          <label htmlFor="name" className="text-light">
             name
           </label>
-          {/* <input type="hidden" name="id" value="" /> */}
           <input
             type="text"
             name="name"
@@ -24,49 +30,50 @@ const Card = () => {
           />
         </div>
         <div className="form-group">
-          <label for="category" className="text-light">
+          <label htmlFor="category" className="text-light">
             category
           </label>
-          <select name="category" id="category">
-            <option value="food">Food</option>
-            <option value="beverage">Beverage</option>
-            <option value="snack">Snack</option>
-            <option value="cigarette">Cigarette</option>
+          <select name="category" onChange={(e) => setCategory(e.target.value)} required>
+            <option value="">-Select Catagory-</option>
+            <option value="Food">Food</option>
+            <option value="Beverage">Beverage</option>
+            <option value="Snack">Snack</option>
+            <option value="Cigarette">Cigarette</option>
           </select>
         </div>
         <div className="form-group">
-          <label for="ppb" className="text-light">
+          <label htmlFor="ppb" className="text-light">
             wholesalePricePerBox
           </label>
           <input
-            type="text"
+            type="number"
             name="ppb"
             value={priceperbox}
-            onChange={(e) => setPriceBox(e.target.value)}
+            onChange={(e) => setPriceBox(parseInt(e.target.value))}
             placeholder="Price"
           />
         </div>
         <div className="form-group">
-          <label for="ppp" className="text-light">
+          <label htmlFor="ppp" className="text-light">
             wholesalePricePerPack
           </label>
           <input
-            type="text"
+            type="number"
             name="ppp"
             value={priceperpack}
-            onChange={(e) => setPricePack(e.target.value)}
+            onChange={(e) => setPricePack(parseInt(e.target.value))}
             placeholder="Price"
           />
         </div>
         <div className="form-group">
-          <label for="rtp" className="text-light">
+          <label htmlFor="rtp" className="text-light">
             RetailPrice
           </label>
           <input
-            type="text"
+            type="number"
             name="rtp"
             value={retailprice}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => setPrice(parseInt(e.target.value))}
             placeholder="Price"
           />
         </div>

@@ -1,12 +1,34 @@
 import Card from "../../components/card";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import "./addProductPage.scss";
 
-const addProductPage = () => {
+const AddProductPage = () => {
+
+  const history =  useHistory()
+
+  async function onSubmit(
+    name,
+    category,
+    priceperbox,
+    priceperpack,
+    retailprice
+  ) {
+    await axios.post("http://localhost:9000/api/store/products", {
+      name: name,
+      category: category,
+      wholesalePricePerBox: priceperbox,
+      wholesalePricePerPack: priceperpack,
+      RetailPrice: retailprice,
+    });
+    history.push('/product')
+  }
+
   return (
     <div>
-      <Card />
+      <Card onSubmit={onSubmit} />
     </div>
   );
 };
 
-export default addProductPage;
+export default AddProductPage;

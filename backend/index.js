@@ -9,10 +9,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+// mongoose
+//   .connect("mongodb://localhost:27017/store", { useNewUrlParser: true })
+//   .then(() => {
+//     console.log("Database connected at mongodb://localhost:27017/store");
+//   });
+
 mongoose
-  .connect("mongodb://localhost:27017/store", { useNewUrlParser: true })
+  .connect("mongodb+srv://dbUser:1234@cluster0.1ecpb.mongodb.net/store?retryWrites=true&w=majority", { useNewUrlParser: true })
   .then(() => {
-    console.log("Database connected at mongodb://localhost:27017/store");
+    console.log("Database connected...");
   });
 
 app.use("/api", routes);
@@ -21,7 +27,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get("/products",async (req, res) => {
+app.get("/products", async (req, res) => {
   const product = await ProductModel.find();
   res.json(product);
 });

@@ -14,7 +14,7 @@ const AddProductPage = () => {
     priceperpack,
     retailprice
   ) {
-    await axios.post("http://localhost:9000/api/store/products", {
+    await axios.post("https://preecha-product-api.herokuapp.com/api/store/products", {
       name: name,
       category: category,
       wholesalePricePerBox: priceperbox,

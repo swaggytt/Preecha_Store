@@ -12,7 +12,7 @@ const ProductPage = () => {
 
   async function getData() {
     const { data } = await axios.get(
-      "http://localhost:9000/api/store/products"
+      "https://preecha-product-api.herokuapp.com/api/store/products"
     );
     setProductData(data);
   }

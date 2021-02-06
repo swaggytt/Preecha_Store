@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+const PORT = process.env.PORT || 5000;
 // mongoose
 //   .connect("mongodb://localhost:27017/store", { useNewUrlParser: true })
 //   .then(() => {
@@ -32,6 +33,6 @@ app.get("/products", async (req, res) => {
   res.json(product);
 });
 
-app.listen(9000, () => {
-  console.log("Start server at port 9000");
+app.listen(PORT, () => {
+  console.log("Start server at port 5000");
 });

@@ -11,6 +11,8 @@ const ProductPage = () => {
 
   useEffect(() => {
     getData();
+
+    // eslint-disable-next-line
   }, []);
 
   // https://preecha-product-api.herokuapp.com/api/store/products

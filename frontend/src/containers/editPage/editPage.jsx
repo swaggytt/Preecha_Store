@@ -29,13 +29,16 @@ const EditPage = () => {
     wholesalePricePerPack,
     RetailPrice
   ) {
-    await axios.patch(`https://preecha-product-api.herokuapp.com/api/store/products/${id}`, {
-      name: name,
-      category,
-      wholesalePricePerBox,
-      wholesalePricePerPack,
-      RetailPrice,
-    });
+    await axios.patch(
+      `https://preecha-product-api.herokuapp.com/api/store/products/${id}`,
+      {
+        name: name,
+        category,
+        wholesalePricePerBox,
+        wholesalePricePerPack,
+        RetailPrice,
+      }
+    );
     history.push("/product");
   }
 
@@ -51,7 +54,13 @@ const EditPage = () => {
             wholesalePricePerPack,
             RetailPrice,
           } = product;
-          onSubmit(name, category, wholesalePricePerBox, wholesalePricePerPack, RetailPrice);
+          onSubmit(
+            name,
+            category,
+            wholesalePricePerBox,
+            wholesalePricePerPack,
+            RetailPrice
+          );
         }}
         className="form-temp"
       >

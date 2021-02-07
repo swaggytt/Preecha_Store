@@ -19,6 +19,19 @@ router.post("/store/products", async (req, res) => {
   res.status(201);
 });
 
+router.patch("/store/products/:id", async (req, res) => {
+  try {
+    const task = await TaskModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { ...req.body }
+    );
+    res.sendStatus(200);
+  } catch {
+    res.status(404);
+    res.send({ error: "Task doesn't exist!" });
+  }
+});
+
 router.delete("/store/products/:id", async (req, res) => {
   try {
     await ProductModel.deleteOne({ _id: req.params.id });

@@ -2,12 +2,12 @@
 import "./productPage.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
 const ProductPage = () => {
   const [productData, setProductData] = useState([]);
   // const [selectedProduct, setselectedProduct] = useState();
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     getData();
@@ -33,6 +33,10 @@ const ProductPage = () => {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  async function editData(id) {
+    history.push(`/edit/${id}`);
   }
 
   return (
@@ -61,7 +65,10 @@ const ProductPage = () => {
               <td>{product.wholesalePricePerPack}</td>
               <td>{product.RetailPrice}</td>
               <td>
-                <button onClick={()=>history.push('/edit')} className="btn-table fas fa-edit"></button>
+                <button
+                  onClick={() => editData(product._id)}
+                  className="btn-table fas fa-edit"
+                ></button>
                 <button
                   onClick={() => deleteData(product._id)}
                   className="btn-table fas fa-trash-alt"

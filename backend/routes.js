@@ -12,6 +12,12 @@ router.get("/store/products", async (req, res) => {
   res.json(product);
 });
 
+router.get("/store/products/:id", async (req, res) => {
+  const product = await ProductModel.find({ _id: req.params.id });
+  res.json(product);
+  res.sendStatus(200);
+});
+
 router.post("/store/products", async (req, res) => {
   const product = new ProductModel(req.body);
   await product.save();
@@ -21,10 +27,11 @@ router.post("/store/products", async (req, res) => {
 
 router.patch("/store/products/:id", async (req, res) => {
   try {
-    const task = await TaskModel.findOneAndUpdate(
+    const product = await ProductModel.findOneAndUpdate(
       { _id: req.params.id },
       { ...req.body }
     );
+    res.send(product)
     res.sendStatus(200);
   } catch {
     res.status(404);

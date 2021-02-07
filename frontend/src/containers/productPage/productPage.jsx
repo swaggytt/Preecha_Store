@@ -17,7 +17,7 @@ const ProductPage = () => {
   // http://localhost:5000/api/store/products
   async function getData() {
     const { data } = await axios.get(
-      `http://localhost:5000/api/store/products`
+      `https://preecha-product-api.herokuapp.com/api/store/products`
     );
     setProductData(data);
   }
@@ -26,7 +26,7 @@ const ProductPage = () => {
   // http://localhost:5000/api/store/products
   async function deleteData(id) {
     try {
-      await axios.delete(`http://localhost:5000/api/store/products/${id}`);
+      await axios.delete(`https://preecha-product-api.herokuapp.com/api/store/products/${id}`);
 
       const newProduct = productData.filter((product) => product._id !== id);
       setProductData(newProduct);

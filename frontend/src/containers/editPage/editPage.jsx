@@ -14,7 +14,7 @@ const EditPage = () => {
 
   async function fetchData() {
     const { data } = await axios.get(
-      `http://localhost:5000/api/store/products/${id}`
+      `https://preecha-product-api.herokuapp.com/api/store/products/${id}`
     );
     setProduct(data[0]);
     console.log(data[0]);
@@ -27,7 +27,7 @@ const EditPage = () => {
     wholesalePricePerPack,
     RetailPrice
   ) {
-    await axios.patch(`http://localhost:5000/api/store/products/${id}`, {
+    await axios.patch(`https://preecha-product-api.herokuapp.com/api/store/products/${id}`, {
       name: name,
       category,
       wholesalePricePerBox,

@@ -14,15 +14,15 @@ router.get("/store/products", async (req, res) => {
 
 router.get("/store/products/:id", async (req, res) => {
   const product = await ProductModel.find({ _id: req.params.id });
+  res.status(200);
   res.json(product);
-  res.sendStatus(200);
 });
 
 router.post("/store/products", async (req, res) => {
   const product = new ProductModel(req.body);
   await product.save();
-  res.send(product);
   res.status(201);
+  res.send(product);
 });
 
 router.patch("/store/products/:id", async (req, res) => {
@@ -31,7 +31,7 @@ router.patch("/store/products/:id", async (req, res) => {
       { _id: req.params.id },
       { ...req.body }
     );
-    res.send(product)
+    res.send(product);
     res.sendStatus(200);
   } catch {
     res.status(404);

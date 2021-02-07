@@ -7,41 +7,32 @@ const EditPage = () => {
   const history = useHistory();
   const [product, setProduct] = useState([]);
   const { id } = useParams();
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
-  const [priceperbox, setPriceBox] = useState("");
-  const [priceperpack, setPricePack] = useState("");
-  const [retailprice, setPrice] = useState("");
 
   useEffect(() => {
     fetchData();
   }, []);
 
   async function fetchData() {
-    const {res} = await axios.get(
+    const { data } = await axios.get(
       `http://localhost:5000/api/store/products/${id}`
     );
-    setProduct(res);
-    setName(product.name);
-    setCategory(product.category);
-    setPriceBox(product.wholesalePricePerBox);
-    setPricePack(product.wholesalePricePerPack);
-    setPrice(product.RetailPrice);
+    setProduct(data[0]);
+    console.log(data[0]);
   }
 
   async function onSubmit(
     name,
     category,
-    priceperbox,
-    priceperpack,
-    retailprice
+    wholesalePricePerBox,
+    wholesalePricePerPack,
+    RetailPrice
   ) {
     await axios.patch(`http://localhost:5000/api/store/products/${id}`, {
       name: name,
-      category: category,
-      wholesalePricePerBox: priceperbox,
-      wholesalePricePerPack: priceperpack,
-      RetailPrice: retailprice,
+      category,
+      wholesalePricePerBox,
+      wholesalePricePerPack,
+      RetailPrice,
     });
     history.push("/product");
   }
@@ -51,7 +42,14 @@ const EditPage = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          onSubmit(name, category, priceperbox, priceperpack, retailprice);
+          const {
+            name,
+            category,
+            wholesalePricePerBox,
+            wholesalePricePerPack,
+            RetailPrice,
+          } = product;
+          onSubmit(name, category, wholesalePricePerBox, wholesalePricePerPack, RetailPrice);
         }}
         className="form-temp"
       >
@@ -62,8 +60,8 @@ const EditPage = () => {
           <input
             type="text"
             name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={product.name}
+            onChange={(e) => setProduct({ ...product, name: e.target.value })}
             placeholder="name"
           />
         </div>
@@ -72,8 +70,11 @@ const EditPage = () => {
             category
           </label>
           <select
+            value={product.category}
             name="category"
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) =>
+              setProduct({ ...product, category: e.target.value })
+            }
             required
           >
             <option value="">-Select Catagory-</option>
@@ -90,8 +91,13 @@ const EditPage = () => {
           <input
             type="number"
             name="ppb"
-            value={priceperbox}
-            onChange={(e) => setPriceBox(parseInt(e.target.value))}
+            value={product.wholesalePricePerBox}
+            onChange={(e) =>
+              setProduct({
+                ...product,
+                wholesalePricePerBox: parseInt(e.target.value),
+              })
+            }
             placeholder="Price"
           />
         </div>
@@ -102,8 +108,13 @@ const EditPage = () => {
           <input
             type="number"
             name="ppp"
-            value={priceperpack}
-            onChange={(e) => setPricePack(parseInt(e.target.value))}
+            value={product.wholesalePricePerPack}
+            onChange={(e) =>
+              setProduct({
+                ...product,
+                wholesalePricePerPack: parseInt(e.target.value),
+              })
+            }
             placeholder="Price"
           />
         </div>
@@ -114,8 +125,10 @@ const EditPage = () => {
           <input
             type="number"
             name="rtp"
-            value={retailprice}
-            onChange={(e) => setPrice(parseInt(e.target.value))}
+            value={product.RetailPrice}
+            onChange={(e) =>
+              setProduct({ ...product, Retailprice: parseInt(e.target.value) })
+            }
             placeholder="Price"
           />
         </div>
